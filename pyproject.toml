@@ -1,0 +1,16 @@
+[project]
+name = "design2code-env"
+version = "0.1.0"
+description = "Pipeline that generates multi-page websites and turns them into Harbor design-to-code tasks"
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=0.69",
+    "openai>=1.100",
+    "playwright>=1.55",
+    "pillow>=11",
+    "numpy>=2",
+    "python-dotenv>=1.0",
+]
+
+[tool.uv]
+package = false

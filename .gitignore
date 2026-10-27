@@ -5,3 +5,5 @@
 .claude/worktrees/
 __pycache__/
 .venv/
+out/
+*.log

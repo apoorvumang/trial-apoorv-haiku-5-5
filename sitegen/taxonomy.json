@@ -1,0 +1,780 @@
+{
+  "version": 1,
+  "sampling": "class uniform, then subclass uniform within class",
+  "classes": [
+    {
+      "id": "personal_and_portfolio",
+      "name": "Personal & portfolio",
+      "subclasses": [
+        {
+          "id": "academic",
+          "name": "academic"
+        },
+        {
+          "id": "photographer",
+          "name": "photographer"
+        },
+        {
+          "id": "product_designer",
+          "name": "product designer"
+        },
+        {
+          "id": "software_developer",
+          "name": "software developer"
+        },
+        {
+          "id": "writer",
+          "name": "writer"
+        },
+        {
+          "id": "musician",
+          "name": "musician"
+        },
+        {
+          "id": "illustrator",
+          "name": "illustrator"
+        },
+        {
+          "id": "actor",
+          "name": "actor"
+        },
+        {
+          "id": "online_cv",
+          "name": "online CV"
+        }
+      ]
+    },
+    {
+      "id": "blogs_and_independent_creators",
+      "name": "Blogs & independent creators",
+      "subclasses": [
+        {
+          "id": "recipe_blog",
+          "name": "recipe blog"
+        },
+        {
+          "id": "travel_blog",
+          "name": "travel blog"
+        },
+        {
+          "id": "newsletter",
+          "name": "newsletter"
+        },
+        {
+          "id": "podcast",
+          "name": "podcast"
+        },
+        {
+          "id": "hobby_fan_site",
+          "name": "hobby / fan site"
+        },
+        {
+          "id": "digital_garden",
+          "name": "digital garden"
+        }
+      ]
+    },
+    {
+      "id": "news_and_publishing",
+      "name": "News & publishing",
+      "subclasses": [
+        {
+          "id": "local_newspaper",
+          "name": "local newspaper"
+        },
+        {
+          "id": "lifestyle_magazine",
+          "name": "lifestyle magazine"
+        },
+        {
+          "id": "trade_publication",
+          "name": "trade publication"
+        },
+        {
+          "id": "review_site",
+          "name": "review site"
+        },
+        {
+          "id": "book_publisher",
+          "name": "book publisher"
+        },
+        {
+          "id": "literary_journal",
+          "name": "literary journal"
+        }
+      ]
+    },
+    {
+      "id": "online_stores",
+      "name": "Online stores",
+      "subclasses": [
+        {
+          "id": "fashion",
+          "name": "fashion"
+        },
+        {
+          "id": "skincare",
+          "name": "skincare"
+        },
+        {
+          "id": "furniture",
+          "name": "furniture"
+        },
+        {
+          "id": "coffee_roaster",
+          "name": "coffee roaster"
+        },
+        {
+          "id": "electronics",
+          "name": "electronics"
+        },
+        {
+          "id": "single_product_brand",
+          "name": "single-product brand"
+        },
+        {
+          "id": "handmade_shop",
+          "name": "handmade shop"
+        },
+        {
+          "id": "bookstore",
+          "name": "bookstore"
+        }
+      ]
+    },
+    {
+      "id": "food_and_drink",
+      "name": "Food & drink",
+      "subclasses": [
+        {
+          "id": "fine_dining",
+          "name": "fine dining"
+        },
+        {
+          "id": "caf_bakery",
+          "name": "caf\u00e9 / bakery"
+        },
+        {
+          "id": "cocktail_bar",
+          "name": "cocktail bar"
+        },
+        {
+          "id": "brewery_winery",
+          "name": "brewery / winery"
+        },
+        {
+          "id": "food_truck",
+          "name": "food truck"
+        },
+        {
+          "id": "catering",
+          "name": "catering"
+        },
+        {
+          "id": "farm",
+          "name": "farm"
+        }
+      ]
+    },
+    {
+      "id": "travel_and_hospitality",
+      "name": "Travel & hospitality",
+      "subclasses": [
+        {
+          "id": "boutique_hotel",
+          "name": "boutique hotel"
+        },
+        {
+          "id": "resort",
+          "name": "resort"
+        },
+        {
+          "id": "bandb",
+          "name": "B&B"
+        },
+        {
+          "id": "vacation_rental",
+          "name": "vacation rental"
+        },
+        {
+          "id": "campground",
+          "name": "campground"
+        },
+        {
+          "id": "tour_operator",
+          "name": "tour operator"
+        },
+        {
+          "id": "tourism_board",
+          "name": "tourism board"
+        }
+      ]
+    },
+    {
+      "id": "health_and_medical",
+      "name": "Health & medical",
+      "subclasses": [
+        {
+          "id": "family_clinic",
+          "name": "family clinic"
+        },
+        {
+          "id": "dental",
+          "name": "dental"
+        },
+        {
+          "id": "hospital",
+          "name": "hospital"
+        },
+        {
+          "id": "vet",
+          "name": "vet"
+        },
+        {
+          "id": "therapy_practice",
+          "name": "therapy practice"
+        },
+        {
+          "id": "physio",
+          "name": "physio"
+        },
+        {
+          "id": "senior_living",
+          "name": "senior living"
+        }
+      ]
+    },
+    {
+      "id": "fitness_and_sports",
+      "name": "Fitness & sports",
+      "subclasses": [
+        {
+          "id": "gym",
+          "name": "gym"
+        },
+        {
+          "id": "yoga_studio",
+          "name": "yoga studio"
+        },
+        {
+          "id": "martial_arts",
+          "name": "martial arts"
+        },
+        {
+          "id": "climbing_gym",
+          "name": "climbing gym"
+        },
+        {
+          "id": "personal_trainer",
+          "name": "personal trainer"
+        },
+        {
+          "id": "amateur_club",
+          "name": "amateur club"
+        },
+        {
+          "id": "pro_team",
+          "name": "pro team"
+        },
+        {
+          "id": "golf_club",
+          "name": "golf club"
+        }
+      ]
+    },
+    {
+      "id": "beauty_and_personal_care",
+      "name": "Beauty & personal care",
+      "subclasses": [
+        {
+          "id": "hair_salon",
+          "name": "hair salon"
+        },
+        {
+          "id": "barbershop",
+          "name": "barbershop"
+        },
+        {
+          "id": "day_spa",
+          "name": "day spa"
+        },
+        {
+          "id": "nail_studio",
+          "name": "nail studio"
+        },
+        {
+          "id": "tattoo_studio",
+          "name": "tattoo studio"
+        },
+        {
+          "id": "med_spa",
+          "name": "med spa"
+        }
+      ]
+    },
+    {
+      "id": "local_and_home_services",
+      "name": "Local & home services",
+      "subclasses": [
+        {
+          "id": "plumber_hvac",
+          "name": "plumber / HVAC"
+        },
+        {
+          "id": "remodeler",
+          "name": "remodeler"
+        },
+        {
+          "id": "landscaping",
+          "name": "landscaping"
+        },
+        {
+          "id": "cleaning",
+          "name": "cleaning"
+        },
+        {
+          "id": "movers",
+          "name": "movers"
+        },
+        {
+          "id": "pet_care",
+          "name": "pet care"
+        },
+        {
+          "id": "auto_repair",
+          "name": "auto repair"
+        },
+        {
+          "id": "car_dealership",
+          "name": "car dealership"
+        }
+      ]
+    },
+    {
+      "id": "professional_services_and_agencies",
+      "name": "Professional services & agencies",
+      "subclasses": [
+        {
+          "id": "law_firm",
+          "name": "law firm"
+        },
+        {
+          "id": "accounting",
+          "name": "accounting"
+        },
+        {
+          "id": "consultancy",
+          "name": "consultancy"
+        },
+        {
+          "id": "recruitment",
+          "name": "recruitment"
+        },
+        {
+          "id": "design_studio",
+          "name": "design studio"
+        },
+        {
+          "id": "marketing_agency",
+          "name": "marketing agency"
+        },
+        {
+          "id": "architecture",
+          "name": "architecture"
+        }
+      ]
+    },
+    {
+      "id": "software_and_tech_products",
+      "name": "Software & tech products",
+      "subclasses": [
+        {
+          "id": "b2b_saas",
+          "name": "B2B SaaS"
+        },
+        {
+          "id": "developer_tool_api",
+          "name": "developer tool / API"
+        },
+        {
+          "id": "mobile_app",
+          "name": "mobile app"
+        },
+        {
+          "id": "ai_product",
+          "name": "AI product"
+        },
+        {
+          "id": "hardware_device",
+          "name": "hardware device"
+        },
+        {
+          "id": "open_source_project",
+          "name": "open-source project"
+        }
+      ]
+    },
+    {
+      "id": "docs_and_knowledge_bases",
+      "name": "Docs & knowledge bases",
+      "subclasses": [
+        {
+          "id": "api_docs",
+          "name": "API docs"
+        },
+        {
+          "id": "help_center",
+          "name": "help center"
+        },
+        {
+          "id": "design_system_docs",
+          "name": "design system docs"
+        },
+        {
+          "id": "company_handbook",
+          "name": "company handbook"
+        },
+        {
+          "id": "online_textbook",
+          "name": "online textbook"
+        }
+      ]
+    },
+    {
+      "id": "corporate_and_industrial",
+      "name": "Corporate & industrial",
+      "subclasses": [
+        {
+          "id": "manufacturer",
+          "name": "manufacturer"
+        },
+        {
+          "id": "logistics",
+          "name": "logistics"
+        },
+        {
+          "id": "energy",
+          "name": "energy"
+        },
+        {
+          "id": "construction",
+          "name": "construction"
+        },
+        {
+          "id": "pharma",
+          "name": "pharma"
+        },
+        {
+          "id": "conglomerate",
+          "name": "conglomerate"
+        }
+      ]
+    },
+    {
+      "id": "finance_and_insurance",
+      "name": "Finance & insurance",
+      "subclasses": [
+        {
+          "id": "community_bank",
+          "name": "community bank"
+        },
+        {
+          "id": "fintech",
+          "name": "fintech"
+        },
+        {
+          "id": "insurer",
+          "name": "insurer"
+        },
+        {
+          "id": "wealth_manager",
+          "name": "wealth manager"
+        },
+        {
+          "id": "vc_firm",
+          "name": "VC firm"
+        },
+        {
+          "id": "mortgage_lender",
+          "name": "mortgage lender"
+        }
+      ]
+    },
+    {
+      "id": "real_estate",
+      "name": "Real estate",
+      "subclasses": [
+        {
+          "id": "brokerage",
+          "name": "brokerage"
+        },
+        {
+          "id": "new_development",
+          "name": "new development"
+        },
+        {
+          "id": "apartment_community",
+          "name": "apartment community"
+        },
+        {
+          "id": "property_manager",
+          "name": "property manager"
+        },
+        {
+          "id": "coworking",
+          "name": "coworking"
+        },
+        {
+          "id": "single_property_site",
+          "name": "single-property site"
+        }
+      ]
+    },
+    {
+      "id": "education",
+      "name": "Education",
+      "subclasses": [
+        {
+          "id": "university",
+          "name": "university"
+        },
+        {
+          "id": "k_12_school",
+          "name": "K-12 school"
+        },
+        {
+          "id": "preschool",
+          "name": "preschool"
+        },
+        {
+          "id": "language_school",
+          "name": "language school"
+        },
+        {
+          "id": "bootcamp",
+          "name": "bootcamp"
+        },
+        {
+          "id": "online_academy",
+          "name": "online academy"
+        },
+        {
+          "id": "research_lab",
+          "name": "research lab"
+        },
+        {
+          "id": "summer_camp",
+          "name": "summer camp"
+        }
+      ]
+    },
+    {
+      "id": "nonprofit_faith_and_community",
+      "name": "Nonprofit, faith & community",
+      "subclasses": [
+        {
+          "id": "charity_ngo",
+          "name": "charity / NGO"
+        },
+        {
+          "id": "foundation",
+          "name": "foundation"
+        },
+        {
+          "id": "animal_rescue",
+          "name": "animal rescue"
+        },
+        {
+          "id": "food_bank",
+          "name": "food bank"
+        },
+        {
+          "id": "congregation",
+          "name": "congregation"
+        },
+        {
+          "id": "professional_association",
+          "name": "professional association"
+        },
+        {
+          "id": "hobby_club",
+          "name": "hobby club"
+        }
+      ]
+    },
+    {
+      "id": "government_and_public_services",
+      "name": "Government & public services",
+      "subclasses": [
+        {
+          "id": "city_government",
+          "name": "city government"
+        },
+        {
+          "id": "public_library",
+          "name": "public library"
+        },
+        {
+          "id": "transit_agency",
+          "name": "transit agency"
+        },
+        {
+          "id": "parks_department",
+          "name": "parks department"
+        },
+        {
+          "id": "public_health",
+          "name": "public health"
+        },
+        {
+          "id": "embassy",
+          "name": "embassy"
+        }
+      ]
+    },
+    {
+      "id": "arts_culture_and_entertainment",
+      "name": "Arts, culture & entertainment",
+      "subclasses": [
+        {
+          "id": "museum",
+          "name": "museum"
+        },
+        {
+          "id": "gallery",
+          "name": "gallery"
+        },
+        {
+          "id": "theatre",
+          "name": "theatre"
+        },
+        {
+          "id": "music_venue",
+          "name": "music venue"
+        },
+        {
+          "id": "cinema",
+          "name": "cinema"
+        },
+        {
+          "id": "zoo",
+          "name": "zoo"
+        },
+        {
+          "id": "film_tv_production",
+          "name": "film / TV production"
+        },
+        {
+          "id": "game_studio",
+          "name": "game studio"
+        },
+        {
+          "id": "band",
+          "name": "band"
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "name": "Events",
+      "subclasses": [
+        {
+          "id": "tech_conference",
+          "name": "tech conference"
+        },
+        {
+          "id": "music_festival",
+          "name": "music festival"
+        },
+        {
+          "id": "wedding_site",
+          "name": "wedding site"
+        },
+        {
+          "id": "trade_show",
+          "name": "trade show"
+        },
+        {
+          "id": "marathon",
+          "name": "marathon"
+        },
+        {
+          "id": "charity_gala",
+          "name": "charity gala"
+        },
+        {
+          "id": "retreat",
+          "name": "retreat"
+        }
+      ]
+    },
+    {
+      "id": "marketplaces_directories_and_communities",
+      "name": "Marketplaces, directories & communities",
+      "subclasses": [
+        {
+          "id": "job_board",
+          "name": "job board"
+        },
+        {
+          "id": "local_directory",
+          "name": "local directory"
+        },
+        {
+          "id": "classifieds",
+          "name": "classifieds"
+        },
+        {
+          "id": "rental_marketplace",
+          "name": "rental marketplace"
+        },
+        {
+          "id": "freelance_marketplace",
+          "name": "freelance marketplace"
+        },
+        {
+          "id": "forum",
+          "name": "forum"
+        },
+        {
+          "id": "fan_wiki",
+          "name": "fan wiki"
+        }
+      ]
+    },
+    {
+      "id": "logged_in_app_screens",
+      "name": "Logged-in app screens",
+      "subclasses": [
+        {
+          "id": "analytics_dashboard",
+          "name": "analytics dashboard"
+        },
+        {
+          "id": "crm",
+          "name": "CRM"
+        },
+        {
+          "id": "project_management_tool",
+          "name": "project management tool"
+        },
+        {
+          "id": "email_client",
+          "name": "email client"
+        },
+        {
+          "id": "store_admin",
+          "name": "store admin"
+        },
+        {
+          "id": "online_banking",
+          "name": "online banking"
+        },
+        {
+          "id": "learning_portal",
+          "name": "learning portal"
+        }
+      ]
+    }
+  ]
+}

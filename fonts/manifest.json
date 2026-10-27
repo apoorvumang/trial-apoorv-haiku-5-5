@@ -1,0 +1,377 @@
+[
+  {
+    "id": "inter",
+    "family": "Inter",
+    "category": "sans-serif",
+    "version": "v20",
+    "license": "OFL-1.1",
+    "weights": [
+      300,
+      400,
+      500,
+      600,
+      700,
+      800
+    ],
+    "italic": [
+      400,
+      700
+    ]
+  },
+  {
+    "id": "dm-sans",
+    "family": "DM Sans",
+    "category": "sans-serif",
+    "version": "v17",
+    "license": "OFL-1.1",
+    "weights": [
+      300,
+      400,
+      500,
+      600,
+      700,
+      800
+    ],
+    "italic": [
+      400,
+      700
+    ]
+  },
+  {
+    "id": "manrope",
+    "family": "Manrope",
+    "category": "sans-serif",
+    "version": "v20",
+    "license": "OFL-1.1",
+    "weights": [
+      300,
+      400,
+      500,
+      600,
+      700,
+      800
+    ],
+    "italic": []
+  },
+  {
+    "id": "space-grotesk",
+    "family": "Space Grotesk",
+    "category": "sans-serif",
+    "version": "v22",
+    "license": "OFL-1.1",
+    "weights": [
+      300,
+      400,
+      500,
+      600,
+      700
+    ],
+    "italic": []
+  },
+  {
+    "id": "ibm-plex-sans",
+    "family": "IBM Plex Sans",
+    "category": "sans-serif",
+    "version": "v23",
+    "license": "OFL-1.1",
+    "weights": [
+      300,
+      400,
+      500,
+      600,
+      700
+    ],
+    "italic": [
+      400,
+      700
+    ]
+  },
+  {
+    "id": "work-sans",
+    "family": "Work Sans",
+    "category": "sans-serif",
+    "version": "v24",
+    "license": "OFL-1.1",
+    "weights": [
+      300,
+      400,
+      500,
+      600,
+      700,
+      800
+    ],
+    "italic": [
+      400,
+      700
+    ]
+  },
+  {
+    "id": "outfit",
+    "family": "Outfit",
+    "category": "sans-serif",
+    "version": "v15",
+    "license": "OFL-1.1",
+    "weights": [
+      300,
+      400,
+      500,
+      600,
+      700,
+      800
+    ],
+    "italic": []
+  },
+  {
+    "id": "sora",
+    "family": "Sora",
+    "category": "sans-serif",
+    "version": "v17",
+    "license": "OFL-1.1",
+    "weights": [
+      300,
+      400,
+      500,
+      600,
+      700,
+      800
+    ],
+    "italic": []
+  },
+  {
+    "id": "nunito",
+    "family": "Nunito",
+    "category": "sans-serif",
+    "version": "v32",
+    "license": "OFL-1.1",
+    "weights": [
+      300,
+      400,
+      500,
+      600,
+      700,
+      800
+    ],
+    "italic": [
+      400,
+      700
+    ]
+  },
+  {
+    "id": "syne",
+    "family": "Syne",
+    "category": "sans-serif",
+    "version": "v24",
+    "license": "OFL-1.1",
+    "weights": [
+      400,
+      500,
+      600,
+      700,
+      800
+    ],
+    "italic": []
+  },
+  {
+    "id": "archivo",
+    "family": "Archivo",
+    "category": "sans-serif",
+    "version": "v25",
+    "license": "OFL-1.1",
+    "weights": [
+      300,
+      400,
+      500,
+      600,
+      700,
+      800
+    ],
+    "italic": [
+      400,
+      700
+    ]
+  },
+  {
+    "id": "playfair-display",
+    "family": "Playfair Display",
+    "category": "serif",
+    "version": "v40",
+    "license": "OFL-1.1",
+    "weights": [
+      400,
+      500,
+      600,
+      700,
+      800
+    ],
+    "italic": [
+      400,
+      700
+    ]
+  },
+  {
+    "id": "fraunces",
+    "family": "Fraunces",
+    "category": "serif",
+    "version": "v38",
+    "license": "OFL-1.1",
+    "weights": [
+      300,
+      400,
+      500,
+      600,
+      700,
+      800
+    ],
+    "italic": [
+      400,
+      700
+    ]
+  },
+  {
+    "id": "lora",
+    "family": "Lora",
+    "category": "serif",
+    "version": "v37",
+    "license": "OFL-1.1",
+    "weights": [
+      400,
+      500,
+      600,
+      700
+    ],
+    "italic": [
+      400,
+      700
+    ]
+  },
+  {
+    "id": "libre-baskerville",
+    "family": "Libre Baskerville",
+    "category": "serif",
+    "version": "v24",
+    "license": "OFL-1.1",
+    "weights": [
+      400,
+      500,
+      600,
+      700
+    ],
+    "italic": [
+      400,
+      700
+    ]
+  },
+  {
+    "id": "cormorant-garamond",
+    "family": "Cormorant Garamond",
+    "category": "serif",
+    "version": "v21",
+    "license": "OFL-1.1",
+    "weights": [
+      300,
+      400,
+      500,
+      600,
+      700
+    ],
+    "italic": [
+      400,
+      700
+    ]
+  },
+  {
+    "id": "dm-serif-display",
+    "family": "DM Serif Display",
+    "category": "serif",
+    "version": "v17",
+    "license": "OFL-1.1",
+    "weights": [
+      400
+    ],
+    "italic": [
+      400
+    ]
+  },
+  {
+    "id": "source-serif-4",
+    "family": "Source Serif 4",
+    "category": "serif",
+    "version": "v15",
+    "license": "OFL-1.1",
+    "weights": [
+      300,
+      400,
+      500,
+      600,
+      700,
+      800
+    ],
+    "italic": [
+      400,
+      700
+    ]
+  },
+  {
+    "id": "bebas-neue",
+    "family": "Bebas Neue",
+    "category": "sans-serif",
+    "version": "v16",
+    "license": "OFL-1.1",
+    "weights": [
+      400
+    ],
+    "italic": []
+  },
+  {
+    "id": "space-mono",
+    "family": "Space Mono",
+    "category": "monospace",
+    "version": "v17",
+    "license": "OFL-1.1",
+    "weights": [
+      400,
+      700
+    ],
+    "italic": [
+      400,
+      700
+    ]
+  },
+  {
+    "id": "jetbrains-mono",
+    "family": "JetBrains Mono",
+    "category": "monospace",
+    "version": "v24",
+    "license": "OFL-1.1",
+    "weights": [
+      300,
+      400,
+      500,
+      600,
+      700,
+      800
+    ],
+    "italic": [
+      400,
+      700
+    ]
+  },
+  {
+    "id": "ibm-plex-mono",
+    "family": "IBM Plex Mono",
+    "category": "monospace",
+    "version": "v20",
+    "license": "OFL-1.1",
+    "weights": [
+      300,
+      400,
+      500,
+      600,
+      700
+    ],
+    "italic": [
+      400,
+      700
+    ]
+  }
+]
