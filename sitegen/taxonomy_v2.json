@@ -1,0 +1,101 @@
+{
+  "version": 2,
+  "axis": "site genre (what kind of interface the site is), not organisation type; sources in out/ontology_research.json (write-up pending)",
+  "sampling": "class uniform, then subclass uniform within class",
+  "classes": [
+    {"id": "search_and_portal", "name": "Search engine & web portal", "subclasses": [
+      {"id": "web_search", "name": "general web search engine", "description": "minimal home, web results pages with ads and a knowledge panel, image and news result tabs"},
+      {"id": "vertical_search", "name": "vertical search engine", "description": "search over one kind of thing (scholarly papers, recipes, flights, products) with faceted results"},
+      {"id": "web_portal", "name": "multi-purpose web portal", "description": "dense homepage of modules (news, weather, markets, mail teaser, search) plus section fronts"},
+      {"id": "map_local_search", "name": "map and local search", "description": "map with a results sidebar, place detail panels, directions"},
+      {"id": "web_directory", "name": "web directory / link hub", "description": "category tree, link listings, curated collections"}]},
+    {"id": "ecommerce", "name": "E-commerce store", "subclasses": [
+      {"id": "mega_retailer", "name": "everything-store mega-retailer", "description": "department mega-menu, promo rails, search results grid with faceted filters, product page with buy box and reviews, cart"},
+      {"id": "single_brand_store", "name": "single-brand direct-to-consumer store", "description": "brand-led shop: collections, product pages, bundles, cart"},
+      {"id": "specialty_retailer", "name": "specialty retailer", "description": "niche catalogue (books, outdoor gear, music gear...) with category grids and detailed product pages"},
+      {"id": "grocery_delivery", "name": "online grocery and delivery", "description": "aisles, dense product tiles with unit prices, delivery slot picker, basket"},
+      {"id": "price_comparison", "name": "price comparison / deals site", "description": "offer tables across shops, deal feeds, product comparison pages"}]},
+    {"id": "classifieds_and_listings", "name": "Classifieds & listings marketplace", "subclasses": [
+      {"id": "general_classifieds", "name": "general classifieds", "description": "category directory, listing results, listing detail with seller box, post-an-ad form"},
+      {"id": "property_portal", "name": "real-estate / rental listings portal", "description": "results list beside a map, property detail with photo gallery and facts table, agent profile"},
+      {"id": "job_board", "name": "job board", "description": "job search results with filters, job detail, company profile, application form"},
+      {"id": "auto_marketplace", "name": "used-car marketplace", "description": "vehicle search with many filters, listing detail with specs, dealer page"},
+      {"id": "resale_auction", "name": "peer-to-peer resale / auction site", "description": "item grids with bids or prices, item detail with bid history, seller ratings"},
+      {"id": "freelance_marketplace", "name": "freelance / gig marketplace", "description": "freelancer search results, gig detail with packages, profile with reviews"}]},
+    {"id": "booking", "name": "Booking & reservations", "subclasses": [
+      {"id": "online_travel_agency", "name": "online travel agency (flights and hotels)", "description": "tabbed search widget, flight results with price calendar, hotel results, booking steps"},
+      {"id": "airline", "name": "airline", "description": "flight search, fare selection, seat map, trip management"},
+      {"id": "stay_rental", "name": "hotel / vacation-rental booking platform", "description": "results grid with map, listing page with photos and availability calendar, checkout"},
+      {"id": "restaurant_reservations", "name": "restaurant reservation platform", "description": "restaurant search by date and party size, restaurant page with time slots, booking confirmation"},
+      {"id": "event_ticketing", "name": "event ticketing", "description": "event listings, event page, seat map, ticket checkout, my tickets"},
+      {"id": "appointment_booking", "name": "appointment scheduling service", "description": "provider search, provider profile with slot grid, booking form, appointments list"}]},
+    {"id": "news_and_magazine", "name": "News & magazine", "subclasses": [
+      {"id": "national_newspaper", "name": "national newspaper", "description": "dense multi-column front page, section fronts, article page, opinion page"},
+      {"id": "broadcaster_news", "name": "broadcaster news site", "description": "video-led front page, live blog, article with embedded media, programme pages"},
+      {"id": "sports_news", "name": "sports news and scores", "description": "scores ticker, league tables, match centre, article"},
+      {"id": "financial_news", "name": "financial news and market data", "description": "market data tables, quote page with chart, news front, article"},
+      {"id": "magazine", "name": "lifestyle / culture magazine", "description": "editorial front, feature article with large imagery, reviews, issue archive"},
+      {"id": "local_news", "name": "local newspaper", "description": "community front page, local sections, obituaries and notices, events calendar"}]},
+    {"id": "social_and_feed", "name": "Social network & feed", "subclasses": [
+      {"id": "general_social", "name": "general social network feed", "description": "three-column feed (nav, posts, suggestions), profile, post with comments, groups"},
+      {"id": "photo_social", "name": "photo-first social app", "description": "image feed, profile with post grid, explore grid, single post view"},
+      {"id": "microblog", "name": "microblogging network", "description": "timeline of short posts, thread view, profile, trending sidebar"},
+      {"id": "professional_network", "name": "professional network", "description": "feed of updates, profile with experience sections, company page, jobs tab"},
+      {"id": "short_video_social", "name": "short-video social platform (web)", "description": "vertical video feed with side rail, creator profile grid, discover page"}]},
+    {"id": "forum_and_qa", "name": "Forum, Q&A & community", "subclasses": [
+      {"id": "link_aggregator", "name": "link-aggregator / voting community", "description": "ranked post list with votes, community page, threaded comments"},
+      {"id": "bulletin_board", "name": "threaded bulletin-board forum", "description": "board index, topic list, thread with posts and signatures, member profile"},
+      {"id": "qa_site", "name": "Q&A site", "description": "question list with tags, question page with ranked answers, user reputation profile, ask form"},
+      {"id": "support_community", "name": "product support community", "description": "categories, solved threads, accepted answers, leaderboard"},
+      {"id": "fan_wiki", "name": "fan wiki", "description": "wiki article with infobox and sidebar, category pages, recent changes"}]},
+    {"id": "media_platform", "name": "Video, audio & media platform", "subclasses": [
+      {"id": "video_sharing", "name": "user-generated video sharing", "description": "home grid of thumbnails, watch page with comments and up-next, channel page, search results"},
+      {"id": "streaming_catalogue", "name": "film / TV streaming service", "description": "browse rails of posters, title detail with seasons and episodes, my list"},
+      {"id": "music_podcast", "name": "music / podcast streaming (web player)", "description": "library sidebar, album and playlist pages with track tables, artist page, now-playing bar"},
+      {"id": "live_streaming", "name": "live-streaming platform", "description": "live channel grid, stream page with chat column, category browse"},
+      {"id": "stock_media", "name": "stock photo / media library", "description": "masonry image results, asset detail with licence options, collections"}]},
+    {"id": "mail_and_messaging", "name": "Webmail & messaging", "subclasses": [
+      {"id": "webmail", "name": "webmail client", "description": "folder rail, message list, reading pane, compose, settings"},
+      {"id": "team_chat", "name": "team chat workspace", "description": "workspace and channel sidebar, message stream with threads, member list"},
+      {"id": "consumer_messenger", "name": "consumer messenger (web)", "description": "conversation list, chat view with bubbles and media, contact info panel"},
+      {"id": "calendar", "name": "calendar and scheduling client", "description": "week and month views dense with events, event detail, scheduling page"}]},
+    {"id": "web_app", "name": "Web application / SaaS dashboard (logged in)", "subclasses": [
+      {"id": "analytics_dashboard", "name": "analytics / admin dashboard", "description": "KPI cards, charts, data tables, filters, settings"},
+      {"id": "crm", "name": "CRM / sales pipeline", "description": "pipeline board, contacts table, record detail with activity timeline"},
+      {"id": "project_management", "name": "project management / kanban tool", "description": "kanban board, task list, task detail, timeline view"},
+      {"id": "code_hosting", "name": "code hosting / developer platform", "description": "repository file browser, code view, pull request with diff, issues list"},
+      {"id": "store_back_office", "name": "e-commerce back office", "description": "orders table, product editor, inventory, sales reports"},
+      {"id": "online_banking", "name": "online banking", "description": "accounts overview, transactions table, transfer form, statements"},
+      {"id": "ai_assistant", "name": "AI chat assistant app", "description": "conversation sidebar, chat with long formatted answers and code, settings"},
+      {"id": "learning_portal", "name": "learning portal (logged in)", "description": "course dashboard, lesson page with progress, gradebook, assignments"}]},
+    {"id": "public_services_portal", "name": "Self-service public & utility portal", "subclasses": [
+      {"id": "gov_services_hub", "name": "national government services hub", "description": "task-based service finder, service start pages, step-by-step guidance, multi-step application"},
+      {"id": "municipal_services", "name": "city services portal", "description": "pay, report and apply services, permit application form, status tracker, office locator"},
+      {"id": "utility_account", "name": "utility / telecom customer portal", "description": "account overview, bills table, usage charts, plan change form, outage map"},
+      {"id": "transit", "name": "public transit site", "description": "journey planner results, line timetables, fares table, service alerts"},
+      {"id": "patient_portal", "name": "health-system patient portal", "description": "appointments, test results tables, messages with care team, find-a-doctor"}]},
+    {"id": "reference_and_learning", "name": "Reference, docs & learning", "subclasses": [
+      {"id": "encyclopedia_wiki", "name": "encyclopedia / wiki", "description": "article with table of contents, infobox and references, category and portal pages"},
+      {"id": "technical_docs", "name": "technical / API documentation", "description": "sidebar tree, docs pages with code blocks and parameter tables, API reference"},
+      {"id": "help_center", "name": "help centre / knowledge base", "description": "search-led home, category lists, article with steps and screenshots"},
+      {"id": "recipe_site", "name": "recipe and how-to site", "description": "recipe grids, recipe page with ingredients and steps, collections"},
+      {"id": "course_platform", "name": "online course marketplace", "description": "course catalogue with filters, course page with syllabus and reviews, instructor page"},
+      {"id": "dictionary", "name": "dictionary / language reference", "description": "entry with senses, pronunciation and examples, word lists, thesaurus"}]},
+    {"id": "blog_and_personal", "name": "Blog, personal & creator site", "subclasses": [
+      {"id": "personal_blog", "name": "personal blog", "description": "post list, single post with comments, archive, about"},
+      {"id": "newsletter_publication", "name": "newsletter / independent publication", "description": "post archive, essay page, subscribe and pricing, about the writer"},
+      {"id": "portfolio", "name": "creative portfolio", "description": "project grid, case-study pages, about and contact"},
+      {"id": "academic_homepage", "name": "academic homepage / lab site", "description": "bio, publications list, projects, teaching, people"},
+      {"id": "creator_hub", "name": "creator hub (link-in-bio plus shop)", "description": "link page, merch shop, video and episode lists, membership tiers"}]},
+    {"id": "organisation_brochure", "name": "Organisation brochure site", "subclasses": [
+      {"id": "local_business", "name": "local small business", "description": "a salon, plumber, vet, gym or similar: services, prices, team, booking or contact"},
+      {"id": "hospitality", "name": "restaurant, café, bar or hotel", "description": "menu or rooms, gallery, reservations, location"},
+      {"id": "corporate", "name": "corporate / B2B company", "description": "solutions, industries, case studies, investors, careers"},
+      {"id": "saas_marketing", "name": "software product marketing site", "description": "landing page, features, pricing, customers, changelog"},
+      {"id": "nonprofit", "name": "nonprofit / charity", "description": "mission, programmes, impact, donate, get involved"},
+      {"id": "education_institution", "name": "school, college or university", "description": "admissions, programmes, campus life, news and events"},
+      {"id": "cultural_venue", "name": "museum, theatre or venue", "description": "what's on, exhibitions or programme, visit, tickets"},
+      {"id": "professional_practice", "name": "professional practice (law, accounting, clinic, agency)", "description": "services, people, insights, contact"},
+      {"id": "event_microsite", "name": "event or campaign microsite", "description": "conference, festival or launch: agenda, speakers or line-up, tickets, venue"}]}
+  ]
+}

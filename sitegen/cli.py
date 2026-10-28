@@ -26,12 +26,12 @@ def pick_model(seed: int) -> str:
     return GENERATOR_POOL[seed % len(GENERATOR_POOL)]
 
 
-async def make_spec(seed: int, model: str, out_root: Path) -> dict:
+async def make_spec(seed: int, model: str, out_root: Path, taxonomy: str = "v1") -> dict:
     """Site type -> 5 style variants -> pick one. Cached in <out>/specs/ so a reviewed spec is exactly what gets built."""
     path = out_root.parent / "specs" / f"s{seed:04d}.json"
     if path.exists():
         return json.loads(path.read_text())
-    site_type = sample_site_type(seed)
+    site_type = sample_site_type(seed, taxonomy)
     v = await generate_variants(site_type, VARIANT_MODEL)
     idx = pick_variant(v["variants"], seed)
     spec = {**site_type, "variant_index": idx, "style": v["variants"][idx], "viewport": [1440, 900],
@@ -41,11 +41,12 @@ async def make_spec(seed: int, model: str, out_root: Path) -> dict:
     return spec
 
 
-async def build(seed: int, model: str, out_root: Path, sem: asyncio.Semaphore, specs_only: bool = False) -> dict:
+async def build(seed: int, model: str, out_root: Path, sem: asyncio.Semaphore, specs_only: bool = False,
+                taxonomy: str = "v1") -> dict:
     out = out_root / f"s{seed:04d}"
     async with sem:
         try:
-            full = await make_spec(seed, model, out_root)
+            full = await make_spec(seed, model, out_root, taxonomy)
             spec = {k: v for k, v in full.items() if k not in ("variants", "generator")}
             model = full["generator"]
             print(f"[s{seed:04d}] {spec['class']} / {spec['subclass']} -> variant {spec['variant_index'] + 1} "
@@ -75,6 +76,8 @@ async def main() -> None:
     ap.add_argument("--render-only", type=Path, nargs="*")
     ap.add_argument("--repair-only", type=Path, nargs="*")
     ap.add_argument("--specs-only", action="store_true", help="only sample types + style variants, no site build")
+    ap.add_argument("--taxonomy", choices=["v1", "v2"], default="v1",
+                    help="v1: organisation types; v2: site genres (use a separate --out, specs are cached per seed)")
     a = ap.parse_args()
 
     if a.render_only:
@@ -93,7 +96,7 @@ async def main() -> None:
 
     sem = asyncio.Semaphore(a.concurrency)
     models = [a.models[i % len(a.models)] if a.models else pick_model(s) for i, s in enumerate(a.seeds)]
-    results = await asyncio.gather(*(build(s, m, a.out, sem, a.specs_only) for s, m in zip(a.seeds, models)))
+    results = await asyncio.gather(*(build(s, m, a.out, sem, a.specs_only, a.taxonomy) for s, m in zip(a.seeds, models)))
     if a.specs_only:
         return
     a.out.mkdir(parents=True, exist_ok=True)

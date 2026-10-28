@@ -15,24 +15,24 @@ SYSTEM = ("You are an art director who has seen thousands of real websites acros
           "concrete style directions that another designer can execute without guessing.")
 
 
+def _typical(site_type: dict) -> str:
+    d = site_type.get("subclass_description")
+    return f"\nTypical pages and components: {d}" if d else ""
+
+
 def variants_prompt(site_type: dict, n: int = 5) -> str:
     return f"""We need {n} different visual style directions for a website of this type:
 
 Class: {site_type["class"]}
-Subclass: {site_type["subclass"]}
+Subclass: {site_type["subclass"]}{_typical(site_type)}
 
-First think about the real range of how websites of this type look in the wild: budget to premium, traditional to
-experimental, local to global, young to established. Then write {n} style directions that a real organisation of this
-type could plausibly have, spread as widely as possible across that range.
+Write {n} style directions, each one a look that real websites of this type commonly have today. Think of the
+actual sites of this type people use most, and describe {n} different looks you would genuinely expect to find among
+them. Every direction should be a likely, typical look for this kind of site, not a deliberately unusual or
+experimental one.
 
-Variety rules:
-- Any two directions must differ clearly on at least 3 of: light vs dark base; colour temperature and saturation;
-  typography character (serif, grotesk, geometric, monospace, display); layout structure (centred single column,
-  asymmetric grid, sidebar, dense multi-column, full-bleed image bands, card grid); density and whitespace; imagery
-  treatment (full-bleed photos, cut-out objects, illustration or SVG, almost no images); decoration (rules and borders,
-  shadows, gradients, textures, none); era or reference point.
-- At most one direction may be the generic "clean modern sans-serif, white background, one blue/brand accent" look.
-- Each must still feel right for a {site_type["subclass"]} site, not a costume.
+- The {n} directions should be clearly different from each other (for example in colour, light or dark base, type,
+  layout or density), but only in ways that real sites of this type actually differ.
 - The site will be judged from static full-page screenshots, so describe only what is visible on load: no hover
   states, accordions, carousels, marquees, animation, cursor effects or embedded feeds.
 
@@ -42,7 +42,7 @@ from this list only: {", ".join(FONTS)}.
 Return ONLY a JSON object, no prose:
 {{"variants": [{{
   "name": "2-4 word name",
-  "positioning": "one line: what kind of {site_type["subclass"]} would have this look (size, price point, audience, age)",
+  "positioning": "one line: what kind of {site_type["subclass"]} has this look (size, audience, market)",
   "description": "80-150 words, plain text: overall look and mood, layout approach, colour palette with hex codes, typography (which listed fonts for headings/body and how they are used), imagery, shapes and components, notable details",
   "palette": ["#rrggbb", "..."],
   "fonts": {{"headings": "...", "body": "..."}}
