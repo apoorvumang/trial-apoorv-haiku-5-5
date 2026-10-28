@@ -155,7 +155,7 @@ async def generate_site(spec: dict, model: str, out: Path) -> dict:
     c = await complete_with_retry(model, prompts.SYSTEM, p, 40000, validate=_check_brief)
     log.save("1_brief", p, c)
     brief = parse_json(c.text)
-    brief["images"] = brief.get("images", [])[:20]
+    brief["images"] = brief.get("images", [])[:30]
     shutil.copytree(FONTS_DIR, site / "fonts", ignore=shutil.ignore_patterns("manifest.json"))
 
     # 2. images and design system in parallel (both only need the brief)

@@ -1,67 +1,25 @@
-"""Prompts for site generation: brief -> design system -> pages.
+"""Prompts for site generation: brief -> design system -> pages, plus QC-driven repair.
 
-Inputs are the sampled site type (class + subclass) and one style direction; nothing else is pre-decided.
+Deliberately minimal: the site type, the style direction and the technical constraints of the renderer and grader.
+Design decisions (layout, chrome, density, copy) are left to the generator; rendering defects are caught by QC and
+fixed by the repair prompts.
 """
 import json
 
-SYSTEM = (
-    "You are a senior web designer and front-end developer. You produce complete, production-quality, "
-    "static websites in hand-written HTML and CSS. You follow the given style direction closely; it was "
-    "chosen deliberately, so do not drift toward a generic default look."
-)
+SYSTEM = ("You are a senior web designer and front-end developer. You build complete, realistic websites in "
+          "hand-written HTML and CSS.")
 
-APP_CLASS = "logged_in_app_screens"
-SCREEN = (1440, 900)
-
-HARD_RULES = """Hard technical rules (the site is rendered offline in a pinned Chromium at 1440px wide, screenshots only):
-- Static HTML + CSS only. No JavaScript, no <script>, no <canvas>, no iframes.
-- No external resources of any kind: no CDNs, web fonts, @import, remote images or url(http...).
-- Fonts: only families from fonts/fonts.css (already linked): {fonts}. Use the ones named in the style direction.
-  Always end font stacks with a generic family.
-- Raster images: only the provided files, via <img src="images/..."> or background-image: url('images/...').
-  Give images fixed boxes and object-fit: cover so they never stretch.
-- Icons, logos, dividers and decorations: inline SVG or pure CSS. No emoji as icons.
-- Nothing that changes over time or on interaction: no animations, transitions, hover-only content, carousels,
-  marquees, collapsed accordions or modals. Everything must be visible on load. No position: sticky or fixed, no range
-  sliders, no +/- or chevron toggles on FAQ items (show every answer).
-- Must not overflow horizontally at 1440px. Design for a 1440px desktop viewport."""
-
-LAYOUT_RULES = """Layout rules (each of these broke an earlier generated site):
-- Nothing covers text. Stickers, badges, stamps, starbursts, rotated or overlapping photos and other decorations keep
-  at least 16px clear of headings, copy, prices and labels, and do not cover faces in photos.
-- Separate pieces of text never overlap. Give large display numbers and headings enough line-height and spacing that
-  their glyphs never touch the next line or a neighbouring label.
-- Every component that sets its own background (cards, panels, bands, quotes, badges, buttons) also sets its own text
-  colour, so it never inherits a colour meant for a section with a different background.
-- Decorations stay inside their section; nothing is cut off by overflow: hidden or by the edge of the page.
-- Values that must stay on one line (phone numbers, prices, times, dates, numbers with separators) use
-  white-space: nowrap.
-- At most one call-to-action band per page."""
-
-CSS_RULES = """CSS rules (each of these broke an earlier generated site):
-- styles.css begins with a reset of the browser defaults the design does not want: margin and padding on body,
-  headings, p, ul/ol, dl and dd (dd has a 40px default indent), figure and blockquote; fieldset border, margin and
-  padding, and legend padding. Then set spacing explicitly.
-- No skip link or other visually-hidden helper that could show up in a screenshot.
-- Scope layout rules to classes and direct children. Never give a broad descendant selector such as `.card span`
-  display: block, flex or grid; it splits inline text (prices, units, punctuation) onto separate lines.
-- Inside flex and grid rows, wrap each piece of text in its own element, and keep a value with its unit or symbol.
-- Code blocks use white-space: pre with overflow-x: auto and a font size at which lines fit. Never set
-  overflow-wrap: anywhere or word-break: break-all on running text, emails, URLs or code; size boxes so emails and
-  URLs fit on one line.
-- When a block is centred, centre everything in it: a row of buttons gets justify-content: center.
-- Cards in one row align to the top or stretch to equal height; never vertically centre cards of different heights."""
-
-COPY_RULES = """Copy rules:
-- Write every word as the organisation itself, for its real visitors. Never say or hint that the site is fictional,
-  invented, a demo, a preview, a concept, a mock-up or static, and never restate these instructions or any build
-  constraint on the page (no "nothing is submitted", "all answers are shown below", "for illustration only", notes
-  about invented names, numbers or phone ranges). Forms read as ordinary working forms.
-- Use the spelling, date, currency and number conventions of the organisation's country."""
+RULES = """Technical constraints (the site is rendered offline in Chromium at 1440px wide and judged from static
+full-page screenshots):
+- Static HTML and CSS only: no JavaScript, no external resources (CDNs, web fonts, remote images).
+- Fonts: only these families from fonts/fonts.css, which is already linked: {fonts}.
+- Raster images: only the provided files in images/. Icons and decorations: inline SVG or CSS.
+- Everything must be visible on load: no animations, no position: sticky or fixed, no collapsed or hidden content.
+- Write it as the real site would. Never mention that it is fictional, generated or a demo."""
 
 
-def fonts_line(fonts: list[str]) -> str:
-    return ", ".join(f"'{f}'" for f in fonts)
+def _rules(fonts: list[str]) -> str:
+    return RULES.format(fonts=", ".join(fonts))
 
 
 def _type_line(spec: dict) -> str:
@@ -74,89 +32,43 @@ def _style_block(spec: dict) -> str:
             f'Palette: {", ".join(s["palette"])}. Fonts: headings {s["fonts"]["headings"]}, body {s["fonts"]["body"]}.')
 
 
-def _app_note(spec: dict) -> str:
-    if spec["class_id"] != APP_CLASS:
-        return ""
-    return """
-This is a logged-in product UI, not a marketing site. "Pages" are screens of the app (for example an overview
-dashboard, a list/table view, a record detail view, a compose/edit form, settings). The shared chrome is the app shell
-(sidebar and/or top bar with workspace switcher, search field, user menu) instead of a marketing header and footer.
-Fill every screen with realistic data for one fictional customer organisation and user.
-"""
-
-
 def brief_prompt(spec: dict) -> str:
-    return f"""Invent a fictional but completely believable {_type_line(spec)} and plan its website.
+    return f"""Plan the website of a believable, fictional {_type_line(spec)}.
 
 {_style_block(spec)}
-{_app_note(spec)}
-Plan it like a real site of this type would be built:
-- Organisation: name, place, people with names and roles, concrete offerings with real-looking prices, dates,
-  numbers. Specific details, never placeholders or lorem ipsum. Avoid cliched names (no "Acme", "Lumina", "Nexus").
-- Pages: choose 5 to 7 pages that a real {spec["subclass"]} site would have. The first is the home page, file
-  "index.html"; other files are short kebab-case names ending in .html. At least one page must be information-dense
-  in the way this type of site naturally is (for example a full menu, price table, schedule, catalogue grid, long
-  article, booking or application form, data table).
-- Length: each page is 3 to 6 screens tall at {SCREEN[0]}x{SCREEN[1]} (about {3 * SCREEN[1]}-{6 * SCREEN[1]}px); the
-  one dense page may reach 7 screens. Plan sections to fit.
-- Copy: concise and specific, like a professionally designed site. Headlines, short paragraphs, labels, lists and
-  numbers. Balance text with visual components (images, cards, stats, icons, tables). Only an article-type page
-  should have long running text. Every repeated fact (people, roles, counts, prices, dates) goes in "facts" once and
-  pages reuse it exactly, so pages never contradict each other.
 
-{COPY_RULES}
-- Images: plan them the way a real site of this type and style would use imagery (a store shows a photo for every
-  product card; a text-led studio may use few). Every planned image must be used. At most 20 images in total.
-  For each: a filename (images/<kebab-name>.jpg), its display size in px (width <= 1600, height <= 1200), the page
-  it appears on, and a detailed prompt for an image generator describing the subject, composition and framing.
-  Also give one site-wide "image_style" line (lighting, colour grading, background, photo vs illustration) that
-  matches the style direction, so all images look like one shoot. Every image is a distinct shot (never plan the
-  same subject twice) and fits the organisation's location, season and clientele. Images must never contain text,
-  logos or watermarks, including printed text or graphics on clothing, packaging and signs.
+Choose 5 to 8 pages that a real site of this type has; the first is "index.html", the others short kebab-case .html
+names. Give each page its concrete content: real-looking names, numbers, prices, dates, text. Put facts that several
+pages repeat in "facts" so the pages agree. Each page should be about 3 to 6 screens tall at 1440x900.
+
+Plan the raster images the site uses (at most 30): for each a filename, its display size in px (at most 1600x1200),
+the page it is on, and a prompt for an image generator. Images contain no text or logos. Also give one "image_style"
+line so they look like one set.
 
 Return ONLY a JSON object (no prose, no code fence) with this shape:
 {{
-  "org": {{"name": "...", "tagline": "...", "summary": "...", "location": "...", "founded": "..."}},
-  "facts": {{ ...structured specifics the pages draw on: offerings, prices, people, stats... }},
+  "org": {{"name": "...", "tagline": "...", "summary": "..."}},
+  "facts": {{}},
   "image_style": "...",
   "nav": [{{"label": "...", "file": "index.html"}}],
   "pages": [{{"file": "index.html", "title": "...", "purpose": "...", "sections": [{{"name": "...", "content": "..."}}]}}],
-  "images": [{{"file": "images/hero.jpg", "width": 1440, "height": 720, "page": "index.html", "prompt": "..."}}]
+  "images": [{{"file": "images/example.jpg", "width": 1200, "height": 800, "page": "index.html", "prompt": "..."}}]
 }}"""
 
 
 def design_system_prompt(spec: dict, brief: dict, fonts: list[str]) -> str:
-    app = spec["class_id"] == APP_CLASS
-    chrome = ("the app shell: header.html holds the persistent sidebar and/or top bar; footer.html may be empty or a "
-              "thin status bar" if app else
-              "header.html is the site header with navigation; footer.html is a substantial footer (columns, contact "
-              "details, small print)")
-    return f"""Create the shared design system for this {_type_line(spec)} website: one stylesheet plus the shared
-chrome that appears on every page.
+    return f"""Create the shared design system of this {_type_line(spec)} website.
 
 {_style_block(spec)}
 
 Site brief:
 {json.dumps(brief, indent=2)}
 
-{HARD_RULES.format(fonts=fonts_line(fonts))}
+{_rules(fonts)}
 
-Requirements:
-- styles.css starts with a :root block of design tokens (colours, type scale, spacing, radii, borders, shadows) taken
-  from the style direction, then base element styles, layout helpers, and the reusable components the pages need
-  (buttons, cards, tables, form fields, badges, section headers, ...).
-- Shared chrome: {chrome}. It links to every page in the brief's nav, using its relative hrefs exactly.
-- Each page's <body> has exactly three children in this order: the header.html markup, one <main>, the footer.html
-  markup. Style body accordingly (for example a grid when the navigation is a sidebar).
-- The look must strongly express the style direction. Do not set a fixed height on html/body.
+Return three files: styles.css (shared by every page), header.html (markup that goes before each page's <main>) and
+footer.html (markup that goes after it; may be empty). Use the nav's hrefs exactly.
 
-{LAYOUT_RULES}
-
-{CSS_RULES}
-
-{COPY_RULES}
-
-Return exactly three files in this format and nothing else:
 <file name="styles.css">
 ...css...
 </file>
@@ -164,54 +76,41 @@ Return exactly three files in this format and nothing else:
 ...markup...
 </file>
 <file name="footer.html">
-...markup (may be empty)...
+...markup...
 </file>"""
 
 
 def page_prompt(spec: dict, brief: dict, page: dict, styles_css: str, header: str, footer: str,
                 fonts: list[str]) -> str:
     images = [im for im in brief.get("images", []) if im.get("page") == page["file"]]
-    return f"""Build the main content of one page of this {_type_line(spec)} website.
+    return f"""Build the page "{page["title"]}" ({page["file"]}) of this {_type_line(spec)} website.
 
 {_style_block(spec)}
-{_app_note(spec)}
-Site brief (shared by all pages):
+
+Site brief:
 {json.dumps(brief, indent=2)}
 
-Shared stylesheet styles.css (already linked on every page; reuse its tokens and components):
+styles.css (already linked):
 <styles.css>
 {styles_css}
 </styles.css>
 
-Shared chrome (inserted automatically around your <main>; do not repeat it):
+Inserted automatically before and after your <main>:
 {header}
 {footer}
 
-{HARD_RULES.format(fonts=fonts_line(fonts))}
+{_rules(fonts)}
 
-{LAYOUT_RULES}
-
-{CSS_RULES}
-
-{COPY_RULES}
-
-Now build the page "{page["title"]}" ({page["file"]}). Purpose: {page.get("purpose", "")}
-Planned sections:
+Planned content:
 {json.dumps(page["sections"], indent=2)}
 
-Images planned for this page (use each one exactly once, at roughly the planned size):
+Images for this page (use each once):
 {json.dumps(images, indent=2) if images else "none"}
 
-Requirements:
-- Implement every planned section with its concrete content. No placeholders.
-- Keep the page 3 to 6 screens tall at {SCREEN[0]}x{SCREEN[1]} (7 at most for a dense page). Concise copy; let layout,
-  imagery and components carry the design.
-- Reuse styles.css tokens and components. Put page-specific CSS in page.css, using the var(--...) tokens.
-- Make the page visually rich and true to the style direction while staying consistent with the rest of the site.
+Return two files: page.css (styles for this page only; may be empty) and main.html.
 
-Return exactly two files in this format and nothing else:
 <file name="page.css">
-...page-specific css (may be empty)...
+...css...
 </file>
 <file name="main.html">
 <main>...</main>
@@ -247,7 +146,7 @@ CHECKS = """What each check means:
   site uses, and do not drop planned sections.
 - sticky_or_fixed: position: sticky/fixed is not allowed; make the element static in place.
 - interactive_control: range sliders and collapsed <details> are not allowed; show their content statically.
-- broken_images, external_requests, fonts, has_script, dead_links, near_blank: the page breaks the hard rules above."""
+- broken_images, external_requests, fonts, has_script, dead_links, near_blank: the page breaks the technical constraints."""
 
 
 def _defects(findings: list[dict]) -> str:
@@ -274,13 +173,7 @@ Shared chrome around your <main> (you cannot change it):
 {header}
 {footer}
 
-{HARD_RULES.format(fonts=fonts_line(fonts))}
-
-{LAYOUT_RULES}
-
-{CSS_RULES}
-
-{COPY_RULES}
+{_rules(fonts)}
 
 {_defects(findings)}
 
@@ -313,13 +206,7 @@ fix one element). Keep every class name, token and selector the pages rely on, a
 
 {_style_block(spec)}
 
-{HARD_RULES.format(fonts=fonts_line(fonts))}
-
-{LAYOUT_RULES}
-
-{CSS_RULES}
-
-{COPY_RULES}
+{_rules(fonts)}
 
 {_defects(findings)}
 
