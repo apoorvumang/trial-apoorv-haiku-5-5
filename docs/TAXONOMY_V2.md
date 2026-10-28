@@ -91,10 +91,44 @@ community events platform, a stadium box office and a theatre box office: five l
 | 9 | Brochure / software marketing site | Clean SaaS Blue | Sol |
 | 10 | Web app / analytics dashboard | Dark Observability Console | Opus |
 
-## Not yet adapted
+## Minimal build prompts
 
-The site-building prompts (`sitegen/prompts.py`) still assume a brochure. Every site is "a fictional organisation" whose
-copy is written in its own voice, with a marketing header and footer, one call-to-action band, 3–6 screens per page and
-at most 20 images. The app-shell instructions only trigger for v1's "logged-in app screens" class. Before building v2
-sites, the prompts need per-genre rules: app shell for app and mail genres, user-generated content for feeds and
-forums, page lists taken from the subclass, and a larger thumbnail budget for stores and media platforms.
+The site-building prompts (`sitegen/prompts.py`) were also cut down to the essentials. They had grown to about 900
+words of rules per call, most of them written for brochure sites: header and footer instructions, an app-shell special
+case, one call-to-action band, copy-length and density coaching, and long layout, CSS and copy rule lists, each added
+after a defect on some v1 site. Those rules would have pushed every v2 genre back towards a brochure. The prompts now
+give only:
+
+- **Brief:** plan a believable site of this type in this style. Pick 5–8 pages a real one has, write concrete
+  content, keep shared facts consistent, aim for 3–6 screens per page, and plan up to 30 images with no text in them.
+- **Design system:** `styles.css`, plus the markup that goes before and after each page's `<main>`.
+- **Page:** build this page with its planned content and images.
+- **Five technical constraints** the renderer and grader need: static HTML and CSS only; no external resources; only
+  the provided fonts and images; everything visible on load; never say the site is fictional.
+
+Design decisions (navigation, chrome, layout, density, voice) are left to the generator. Rendering defects are still
+caught by QC and fixed by the repair rounds; their prompts are unchanged.
+
+## First build (seeds 1–10)
+
+![Before and after: v1 brochure sites vs v2 genre sites](img/v1_vs_v2.jpg)
+
+Built with `python -m sitegen.cli --taxonomy v2 --out out/v2/sites --seeds 1 ... 10`:
+
+| Seed | Site | Pages | Images | QC defects before repair → left |
+|---|---|---|---|---|
+| 1 | Gatherlane: event ticketing, Eventbrite-like | 7 | 20 | 0 → over height budget by 135px on one page |
+| 2 | Ines Calder: creator hub | 6 | 24 | 3 → 0 |
+| 3 | Asteron Networks: enterprise help centre (downloads, known issues, tickets) | 8 | 10 | 5 → 0 |
+| 4 | BLITZ SPORT: sports tabloid with scores and tables | 7 | 28 | 5 → 0 |
+| 5 | Luma Mail: Gmail-like webmail client | 5 | 0 | 2 → 0 |
+| 6 | Pricetrail: price-comparison search | 7 | 30 | 17 → 1 warning (an image used twice) |
+| 7 | Mellow Home: support community | 7 | 15 | 0 → 1 warning (an image used twice) |
+| 8 | Oake & Ledger: premium stationery shop | 7 | 28 | 0 → 0 |
+| 9 | Avenlo: SaaS marketing site | 7 | 15 | 2 → 0 (5 planned images unused) |
+| 10 | Lumen Ops: observability dashboard | 7 | 6 | 30 → 19 text collisions in one table, plus an image used twice |
+
+None of the 176 images needed a placeholder fallback. Pages per site now vary from 5 to 8 (every v1 site had exactly
+6). Open issues:
+- the dashboard's dense alerts table (s0010), whose text collisions repair did not clear
+- the random style pick sometimes chooses the small version of a genre (a boutique shop rather than a mega-retailer)
